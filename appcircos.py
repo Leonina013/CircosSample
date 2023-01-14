@@ -53,10 +53,10 @@ if file is not None:
         y_col = st.selectbox("Select the column for the Y axis", data.columns)
    
     # Create the histogram
-        plt.bar(data.index, data[x_col1], label=y_col, width=0.2)
-        plt.bar(data.index + 0.2, data[x_col2], label=y_col, width=0.2)
-        plt.bar(data.index + 0.4, data[x_col3], label=y_col, width=0.2)
-        plt.xlabel("Data Label")
+        plt.bar(data.index, data[x_col1], label=x_col1, width=0.2)
+        plt.bar(data.index + 0.2, data[x_col2], label=x_col2, width=0.2)
+        plt.bar(data.index + 0.4, data[x_col3], label=x_col3, width=0.2)
+        plt.xlabel(x_col)
         plt.ylabel(y_col)
         plt.legend()
         st.pyplot()
