@@ -1,22 +1,52 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
-# Load the data
-st.write("Add the csv file containing your data")
-data = st.file_uploader("upload file", type={"csv", "txt"})
-if data is not None:
-    df = pd.read_csv(data)
-st.write(df)
+st.set_page_config(page_title="Data Visualization App", page_icon=":chart_with_upwards_trend:", layout="wide")
 
 st.title("Data Visualization App")
 
-# Create a selectbox to choose the visualization type
-viz_type = st.selectbox("Select visualization type", ["Bar Chart", "Line Chart", "Scatter Plot"])
+# Accept CSV file from user
+file = st.file_uploader("Upload a CSV file", type=["csv"])
 
-# Show the appropriate visualization based on the user's choice
-if viz_type == "Bar Chart":
-    st.bar_chart(df)
-elif viz_type == "Line Chart":
-    st.line_chart(df)
+if file is not None:
+    # Read the CSV file
+    data = pd.read_csv(file)
+
+    # Show the data
+    st.dataframe(data.head())
+
+    # Create a selectbox to choose the visualization type
+    viz_type = st.selectbox("Select visualization type", ["Bar Chart", "Line Chart", "Scatter Plot", "Histogram", "Pie Chart"])
+
+    # Show the appropriate visualization based on the user's choice
+    if viz_type == "Bar Chart":
+        # Get the columns to use for the X and Y axis
+        x_col = st.selectbox("Select the column for the X axis", data.columns)
+        y_col = st.selectbox("Select the column for the Y axis", data.columns)
+        st.bar_chart(data[[x_col, y_col]])
+    elif viz_type == "Line Chart":
+        # Get the columns to use for the X and Y axis
+        x_col = st.selectbox("Select the column for the X axis", data.columns)
+        y_col = st.selectbox("Select the column for the Y axis", data.columns)
+        st.line_chart(data[[x_col, y_col]])
+    elif viz_type == "Scatter Plot":
+        # Get the columns to use for the X and Y axis
+        x_col = st.selectbox("Select the column for the X axis", data.columns)
+        y_col = st.selectbox("Select the column for the Y axis", data.columns)
+        st.scatter_chart(data[[x_col, y_col]])
+    elif viz_type == "Histogram":
+        # Get the column to use for the X axis
+        x_col = st.selectbox("Select the column for the X axis", data.columns)
+        st.write("Histogram of "+x_col)
+        st.pyplot()
+        plt.hist(data[x_col], bins=20)
+    else:
+        # Get the column to use for the Pie chart
+        x_col = st.selectbox("Select the column for the Pie chart", data.columns)
+        st.write("Pie chart of "+x_col)
+        st.pyplot()
+        data[x_col].value_counts().plot.pie(autopct='%1.1f%%')
+
 else:
-    st.scatter_chart(df)
+    st.warning("Please upload a CSV file.")
