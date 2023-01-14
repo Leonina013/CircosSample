@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Data Visualization App", page_icon=":chart_with_upwards_trend:", layout="wide")
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
 st.title("Data Visualization App")
 
 # Accept CSV file from user
