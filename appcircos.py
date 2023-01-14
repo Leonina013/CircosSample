@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 
 # Load the data
-data = pd.read_csv("data.csv")
+st.write("Add the csv file containing your data")
+data = st.file_uploader("upload file", type={"csv", "txt"})
+if data is not None:
+    spectra_df = pd.read_csv(data)
+st.write(data)
 
 st.title("Data Visualization App")
 
