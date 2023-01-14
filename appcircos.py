@@ -56,7 +56,7 @@ if file is not None:
         plt.bar(data.index, data[x_col1], label=x_col1, width=0.2)
         plt.bar(data.index + 0.2, data[x_col2], label=x_col2, width=0.2)
         plt.bar(data.index + 0.4, data[x_col3], label=x_col3, width=0.2)
-        plt.xlabel(x_col)
+        plt.xlabel(x_col1)
         plt.ylabel(y_col)
         plt.legend()
         st.pyplot()
