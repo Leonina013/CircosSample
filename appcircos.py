@@ -1,9 +1,18 @@
 import streamlit as st
-import pycircos
+import pandas as pd
 
-# Data for the plot
-data = [("chr1", 100, 200), ("chr2", 300, 400), ("chr3", 500, 600)]
+# Load the data
+data = pd.read_csv("data.csv")
 
-st.title("Circos Plot")
+st.title("Data Visualization App")
 
-st.pycircos.circos(data, ideogram_radius=0.6, track_radius=0.8)
+# Create a selectbox to choose the visualization type
+viz_type = st.selectbox("Select visualization type", ["Bar Chart", "Line Chart", "Scatter Plot"])
+
+# Show the appropriate visualization based on the user's choice
+if viz_type == "Bar Chart":
+    st.bar_chart(data)
+elif viz_type == "Line Chart":
+    st.line_chart(data)
+else:
+    st.scatter_chart(data)
