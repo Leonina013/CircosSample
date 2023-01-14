@@ -61,7 +61,6 @@ if file is not None:
         axs[1].set_title(x_col2)
         axs[2].set_title(x_col3)
         plt.xlabel("Values")
-        plt.ylabel(y_col)
         plt.legend()
         st.pyplot()
     else:
