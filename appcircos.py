@@ -71,7 +71,7 @@ if file is not None:
        label_col = st.selectbox("Select the column for the labels", data.columns)
 
     # Create the pie charts
-       fig, axs = plt.subplots(1, 3, figsize=(10, 10), tight_layout=True)
+       fig, axs = plt.subplots(1, 3, figsize=(20, 20), tight_layout=True)
        axs[0].pie(data[data_col1], labels=data[label_col], autopct='%1.1f%%')
        axs[0].set_title(data_col1)
        axs[1].pie(data[data_col2], labels=data[label_col], autopct='%1.1f%%')
