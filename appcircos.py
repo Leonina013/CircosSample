@@ -24,7 +24,10 @@ if file is not None:
         # Get the columns to use for the X and Y axis
         x_col = st.selectbox("Select the column for the X axis", data.columns)
         y_col = st.selectbox("Select the column for the Y axis", data.columns)
-        st.bar_chart(data[[x_col, y_col]])
+        plt.barh(data[y_col], data[x_col])
+        plt.xlabel(x_col)
+        plt.ylabel(y_col)
+        st.pyplot()
     elif viz_type == "Line Chart":
         # Get the columns to use for the X and Y axis
         x_col = st.selectbox("Select the column for the X axis", data.columns)
