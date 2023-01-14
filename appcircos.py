@@ -65,10 +65,20 @@ if file is not None:
         st.pyplot()
     else:
         # Get the column to use for the Pie chart
-        x_col = st.selectbox("Select the column for the Pie chart", data.columns)
-        st.write("Pie chart of "+x_col)
-        st.pyplot()
-        data[x_col].value_counts().plot.pie(autopct='%1.1f%%')
+       data_col1 = st.selectbox("Select the first column for the data", data.columns)
+       data_col2 = st.selectbox("Select the second column for the data", data.columns)
+       data_col3 = st.selectbox("Select the third column for the data", data.columns)
+       label_col = st.selectbox("Select the column for the labels", data.columns)
+
+    # Create the pie charts
+       fig, axs = plt.subplots(1, 3, figsize=(10, 5), tight_layout=True)
+       axs[0].pie(data[data_col1], labels=data[label_col], autopct='%1.1f%%')
+       axs[0].set_title(data_col1)
+       axs[1].pie(data[data_col2], labels=data[label_col], autopct='%1.1f%%')
+       axs[1].set_title(data_col2)
+       axs[2].pie(data[data_col3], labels=data[label_col], autopct='%1.1f%%')
+       axs[2].set_title(data_col3)
+       st.pyplot()
 
 else:
     st.warning("Please upload a CSV file.")
