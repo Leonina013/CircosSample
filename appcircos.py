@@ -47,10 +47,17 @@ if file is not None:
         st.pyplot()
     elif viz_type == "Histogram":
         # Get the column to use for the X axis
-        x_col = st.selectbox("Select the column for the X axis", data.columns)
-        st.write("Histogram of "+x_col)
+        x_col1 = st.selectbox("Select the first column for the X axis", data.columns)
+        x_col2 = st.selectbox("Select the second column for the X axis", data.columns)
+        x_col3 = st.selectbox("Select the third column for the X axis", data.columns)
+        y_col = st.selectbox("Select the column for the Y axis", data.columns)
+   
+    # Create the histogram
+        plt.hist([data[x_col1], data[x_col2], data[x_col3]], stacked=True, label=[x_col1, x_col2, x_col3])
+        plt.xlabel("X axis columns")
+        plt.ylabel(y_col)
+        plt.legend()
         st.pyplot()
-        plt.hist(data[x_col], bins=20)
     else:
         # Get the column to use for the Pie chart
         x_col = st.selectbox("Select the column for the Pie chart", data.columns)
