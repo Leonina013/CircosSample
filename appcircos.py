@@ -15,8 +15,8 @@ viz_type = st.selectbox("Select visualization type", ["Bar Chart", "Line Chart",
 
 # Show the appropriate visualization based on the user's choice
 if viz_type == "Bar Chart":
-    st.bar_chart(data)
+    st.bar_chart(df)
 elif viz_type == "Line Chart":
-    st.line_chart(data)
+    st.line_chart(df)
 else:
-    st.scatter_chart(data)
+    st.scatter_chart(df)
