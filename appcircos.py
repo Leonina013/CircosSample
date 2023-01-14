@@ -47,15 +47,21 @@ if file is not None:
         st.pyplot()
     elif viz_type == "Histogram":
         # Get the column to use for the X axis
-        y_col1 = st.selectbox("Select the first column for the X axis", data.columns)
-        y_col2 = st.selectbox("Select the second column for the X axis", data.columns)
-        y_col3 = st.selectbox("Select the third column for the X axis", data.columns)
-        x_col = st.selectbox("Select the column for the Y axis", data.columns)
+        x_col1 = st.selectbox("Select the first column for the X axis", data.columns)
+        x_col2 = st.selectbox("Select the second column for the X axis", data.columns)
+        x_col3 = st.selectbox("Select the third column for the X axis", data.columns)
+        y_col = st.selectbox("Select the column for the Y axis", data.columns)
    
     # Create the histogram
-        plt.bar(data.index, data[y_col1], label=y_col1, width=0.2)
-        plt.bar(data.index + 0.2, data[y_col2], label=y_col2, width=0.2)
-        plt.bar(data.index + 0.4, data[y_col3], label=y_col3, width=0.2)
+        fig, axs = plt.subplots(1, 3, sharey=True, tight_layout=True)
+        axs[0].barh(data[y_col], data[x_col1])
+        axs[1].barh(data[y_col], data[x_col2])
+        axs[2].barh(data[y_col], data[x_col3])
+        axs[0].set_title(x_col1)
+        axs[1].set_title(x_col2)
+        axs[2].set_title(x_col3)
+        plt.xlabel("Values")
+        plt.ylabel(y_col)
         plt.legend()
         st.pyplot()
     else:
