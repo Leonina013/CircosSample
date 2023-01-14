@@ -47,15 +47,15 @@ if file is not None:
         st.pyplot()
     elif viz_type == "Histogram":
         # Get the column to use for the X axis
-        x_col1 = st.selectbox("Select the first column for the X axis", data.columns)
-        x_col2 = st.selectbox("Select the second column for the X axis", data.columns)
-        x_col3 = st.selectbox("Select the third column for the X axis", data.columns)
-        y_col = st.selectbox("Select the column for the Y axis", data.columns)
+        y_col1 = st.selectbox("Select the first column for the X axis", data.columns)
+        y_col2 = st.selectbox("Select the second column for the X axis", data.columns)
+        y_col3 = st.selectbox("Select the third column for the X axis", data.columns)
+        x_col = st.selectbox("Select the column for the Y axis", data.columns)
    
     # Create the histogram
-        plt.bar(data.index, data[x_col1], label=x_col1, width=0.2)
-        plt.bar(data.index + 0.2, data[x_col2], label=x_col2, width=0.2)
-        plt.bar(data.index + 0.4, data[x_col3], label=x_col3, width=0.2)
+        plt.bar(data.index, data[y_col1], label=y_col1, width=0.2)
+        plt.bar(data.index + 0.2, data[y_col2], label=y_col2, width=0.2)
+        plt.bar(data.index + 0.4, data[y_col3], label=y_col3, width=0.2)
         plt.xlabel("Data Label")
         plt.ylabel("Values")
         plt.legend()
