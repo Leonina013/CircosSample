@@ -53,7 +53,7 @@ if file is not None:
         y_col = st.selectbox("Select the column for the Y axis", data.columns)
    
     # Create the histogram
-        plt.hist([data[x_col1], data[x_col2], data[x_col3]], data[y_col])
+        plt.hist(data[x_col1], data[x_col2], data[x_col3], data[y_col] )
         plt.xlabel("X axis columns")
         plt.ylabel(y_col)
         plt.legend()
