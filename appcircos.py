@@ -32,10 +32,10 @@ if file is not None:
         # Get the columns to use for the X and Y axis
         x_col = st.selectbox("Select the column for the X axis", data.columns)
         y_col = st.selectbox("Select the column for the Y axis", data.columns)
-         plt.plot(data[x_col], data[y_col])
-         plt.xlabel(x_col)
-         plt.ylabel(y_col)
-         st.pyplot()
+        plt.plot(data[x_col], data[y_col])
+        plt.xlabel(x_col)
+        plt.ylabel(y_col)
+        st.pyplot()
 
     elif viz_type == "Scatter Plot":
         # Get the columns to use for the X and Y axis
